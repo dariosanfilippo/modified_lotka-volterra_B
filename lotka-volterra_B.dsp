@@ -17,7 +17,7 @@
 //  the oscillator can be fed with external inputs to be used as a nonlinear
 //  distortion unit.
 //
-//  Reference:
+//  References:
 //      https://advancesindifferenceequations.springeropen.com/articles/
 //          10.1186/1687-1847-2013-95
 //      https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations
