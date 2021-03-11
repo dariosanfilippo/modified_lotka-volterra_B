@@ -26,7 +26,7 @@
 
 import("stdfaust.lib");
 
-declare name "Lotka-Volterra complex oscillator (B)";
+declare name "Modified Lotka-Volterra generator (B)";
 declare author "Dario Sanfilippo";
 declare copyright "Copyright (C) 2021 Dario Sanfilippo 
     <sanfilippo.dario@gmail.com>";
