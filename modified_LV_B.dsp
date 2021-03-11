@@ -1,5 +1,5 @@
 // =============================================================================
-//      Lotka-Volterra complex oscillator (B)
+//      Modified Lotka-Volterra complex generator (B)
 // ============================================================================= 
 //
 //  This is a complex double oscillator based on the Lotka-Volterra equations.
@@ -26,11 +26,11 @@
 
 import("stdfaust.lib");
 
-declare name "Modified Lotka-Volterra generator (B)";
+declare name "Modified Lotka-Volterra complex generator (B)";
 declare author "Dario Sanfilippo";
 declare copyright "Copyright (C) 2021 Dario Sanfilippo 
     <sanfilippo.dario@gmail.com>";
-declare version "1.0";
+declare version "1.1";
 declare license "GPL v3.0 license";
 
 // Lotka-Volterra differential equations:
@@ -41,8 +41,8 @@ declare license "GPL v3.0 license";
 //      x[n] = (ax[n - 1] - bx[n - 1]y[n - 1]) / (1 + cx[n - 1])
 //      y[n] = (ex[n - 1]y[n - 1] + dy[n - 1]) / (1 + fy[n - 1])
 lotkavolterra(L, a, b, c, d, e, f, x_0, y_0) =  
-    prey_level(out * (x / (L * 2.0))) , 
-    pred_level(out * (y / (L * 2.0)))
+    prey_level(out * (x / L)) , 
+    pred_level(out * (y / L))
     letrec {
         'x = fi.highpass(1, 10, tanh(L, (x_0 + a * x - b * x * y) / 
             (1 + c * x)));
