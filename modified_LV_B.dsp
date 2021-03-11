@@ -69,12 +69,12 @@ prey_group(x) = vgroup("[1]Prey", x);
 pred_group(x) = vgroup("[2]Predator", x);
 global_group(x) = vgroup("[3]Global", x);
 levels_group(x) = hgroup("[4]Levels (dB)", x);
-a = prey_group(hslider("Growth rate", 4, -10, 10, .000001) : smooth);
-b = prey_group(hslider("Interaction parameter", 1, -10, 10, .000001) : smooth);
-c = prey_group(hslider("Scaling", 2, -10, 10, .000001) : smooth);                
-d = pred_group(hslider("Extinction rate", 4, -10, 10, .000001) : smooth);
-e = pred_group(hslider("Interaction parameter", 1, -10, 10, .000001) : smooth);
-f = pred_group(hslider("Scaling", 2, -10, 10, .000001) : smooth);                
+a = prey_group(hslider("Growth rate[scale:exp]", 4, 0, 10, .000001) : smooth);
+b = prey_group(hslider("Interaction parameter[scale:exp]", 1, 0, 10, .000001) : smooth);
+c = prey_group(hslider("Scaling[scale:exp]", 2, 0, 10, .000001) : smooth);                
+d = pred_group(hslider("Extinction rate[scale:exp]", 4, 0, 10, .000001) : smooth);
+e = pred_group(hslider("Interaction parameter[scale:exp]", 1, 0, 10, .000001) : smooth);
+f = pred_group(hslider("Scaling[scale:exp]", 2, 0, 10, .000001) : smooth);                
 input(x) = global_group(nentry("[3]Input value", 1, 0, 10, .000001) <: 
     _ * impulse + _ * checkbox("[1]Constant inputs") + 
         x * checkbox("[0]External inputs"));
