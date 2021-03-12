@@ -2,13 +2,13 @@
 //      Modified Lotka-Volterra complex generator (B)
 // ============================================================================= 
 //
-//  This is a complex double oscillator based on the Lotka-Volterra equations.
+//  Complex sound generator based on modified Lotka-Volterra equations.
 //  The model is structurally-stable through hyperbolic tangent function
 //  saturators and allows for parameters in unstable ranges to explore 
 //  different dynamics. Furthermore, this model includes DC-blockers in the 
 //  feedback paths to counterbalance a tendency towards fixed-point attractors 
 //  – thus enhancing complex behaviours – and obtain signals suitable for audio.
-//  Besides the common parameters in an L-V model, this system includes a
+//  Besides the original parameters in the model, this system includes a
 //  saturating threshold determining the positive and negative bounds in the
 //  equations, while the output peaks are within the [-1.0; 1.0] range.
 //
@@ -16,11 +16,6 @@
 //  values for deterministic and reproducable behaviours. Alternatively,
 //  the oscillator can be fed with external inputs to be used as a nonlinear
 //  distortion unit.
-//
-//  References:
-//      https://advancesindifferenceequations.springeropen.com/articles/
-//          10.1186/1687-1847-2013-95
-//      https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations
 //
 // =============================================================================
 
@@ -33,13 +28,6 @@ declare copyright "Copyright (C) 2021 Dario Sanfilippo
 declare version "1.1";
 declare license "GPL v3.0 license";
 
-// Lotka-Volterra differential equations:
-//      dx/dt = ax - bxy
-//      dy/dt = cxy - gy
-//
-// Discrete model:
-//      x[n] = (ax[n - 1] - bx[n - 1]y[n - 1]) / (1 + cx[n - 1])
-//      y[n] = (ex[n - 1]y[n - 1] + dy[n - 1]) / (1 + fy[n - 1])
 lotkavolterra(L, a, b, c, d, e, f, x_0, y_0) =  
     prey_level(out * (x / L)) , 
     pred_level(out * (y / L))
