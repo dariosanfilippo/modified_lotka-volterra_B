@@ -50,23 +50,27 @@ smooth(x) = fi.pole(pole, x * (1.0 - pole))
 
 // GUI parameters
 prey_level(x) = attach(x , abs(x) : ba.linear2db : 
-    levels_group(hbargraph("[5]Prey[style:dB]", -60, 0)));
+    levels_group(hbargraph("[0]Prey[style:dB]", -60, 0)));
 pred_level(x) = attach(x , abs(x) : ba.linear2db : 
-    levels_group(hbargraph("[6]Predator[style:dB]", -60, 0)));
-prey_group(x) = vgroup("[1]Prey", x);
-pred_group(x) = vgroup("[2]Predator", x);
-global_group(x) = vgroup("[3]Global", x);
-levels_group(x) = hgroup("[4]Levels (dB)", x);
-a = prey_group(hslider("Growth rate[scale:exp]", 4, 0, 10, .000001) : smooth);
-b = prey_group(hslider("Interaction parameter[scale:exp]", 1, 0, 10, .000001) : smooth);
-c = prey_group(hslider("Scaling[scale:exp]", 2, 0, 10, .000001) : smooth);                
-d = pred_group(hslider("Extinction rate[scale:exp]", 4, 0, 10, .000001) : smooth);
-e = pred_group(hslider("Interaction parameter[scale:exp]", 1, 0, 10, .000001) : smooth);
-f = pred_group(hslider("Scaling[scale:exp]", 2, 0, 10, .000001) : smooth);                
+    levels_group(hbargraph("[1]Predator[style:dB]", -60, 0)));
+prey_group(x) = vgroup("[0]Prey", x);
+pred_group(x) = vgroup("[1]Predator", x);
+global_group(x) = vgroup("[2]Global", x);
+levels_group(x) = hgroup("[3]Levels (dB)", x);
+a = prey_group(hslider("[0]Growth rate[scale:exp]", 4, 0, 10, .000001) 
+    : smooth);
+b = prey_group(hslider("[1]Interaction parameter[scale:exp]", 1, 0, 10, .000001) 
+    : smooth);
+c = prey_group(hslider("[2]Scaling[scale:exp]", 2, 0, 10, .000001) : smooth);                
+d = pred_group(hslider("[0]Extinction rate[scale:exp]", 4, 0, 10, .000001) 
+    : smooth);
+e = pred_group(hslider("[1]Interaction parameter[scale:exp]", 1, 0, 10, .000001) 
+    : smooth);
+f = pred_group(hslider("[2]Scaling[scale:exp]", 2, 0, 10, .000001) : smooth);                
 input(x) = global_group(nentry("[3]Input value", 1, 0, 10, .000001) <: 
     _ * impulse + _ * checkbox("[1]Constant inputs") + 
         x * checkbox("[0]External inputs"));
-impulse = checkbox("[2]Impulse inputs") <: _ - _' : abs;
+impulse = button("[02]Impulse inputs") : ba.impulsify;
 limit = global_group(
     hslider("[5]Saturation limit[scale:exp]", 4, 1, 1024, .000001) : smooth);
 out = global_group(hslider("[6]Output scaling[scale:exp]", 0, 0, 1, .000001) : 
